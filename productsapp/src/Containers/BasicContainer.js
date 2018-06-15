@@ -1,21 +1,40 @@
 import React, { Component } from 'react';
 import Basic from '../Components/Basic';
+import axios from 'axios';
+
 
 class BasicContainer extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            user : {}
+            product : {}
         };
     }
 
     componentDidMount() {
-        const userOb = {};
-        userOb.user_name = "Fede";
-        userOb.description = "Trabajo en accenture y tengo 23 años";
-        this.setState({
-            user : userOb
+        axios(
+            {
+                method: 'GET',
+                url: 'https://api.mercadolibre.com/items/MLA631609359',
+                headers: {
+                    'Content-Type':'application/json'
+                }
+            }
+        )
+        .then((res) => {
+            console.log(res.data);
+            
+            const product = {};
+            product.product_name = res.data.id;
+            product.description = res.data.title;
+            product.image = res.data.pictures[0].url;
+            this.setState({
+                product : product
+            });
+        })
+        .catch((err) => {
+            console.error(err);
         });
     }
 
@@ -23,7 +42,7 @@ class BasicContainer extends Component {
 
         return (
             <Basic 
-                user = { this.state.user }
+            product = { this.state.product }
             />
         );
     }

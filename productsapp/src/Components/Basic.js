@@ -4,12 +4,13 @@ import './Basic.css';
 class Basic extends Component {
     render() {
         return (
-            <article className="user-profile">
+            <article className="product-profile">
                 <header>
-                    <h1>{ this.props.user.user_name }</h1>
+                    <h1>{ this.props.product.product_name }</h1>
                 </header>
                 <main>
-                    <p>{ this.props.user.description }</p>
+                    <p>{ this.props.product.description }</p>
+                    <img src={ this.props.product.image } />
                 </main>
             </article>
         );
