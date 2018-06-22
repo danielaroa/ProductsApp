@@ -6,32 +6,23 @@ import axios from 'axios';
 class BasicContainer extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            product : {}
-        };
+            this.state = {
+                characters : [{name:'dani',description: 'prueba'}],
+                loading: true
+            };
     }
 
-    componentDidMount() {
-        axios(
-            {
-                method: 'GET',
-                url: 'https://api.mercadolibre.com/items/MLA631609359',
-                headers: {
-                    'Content-Type':'application/json'
-                }
+    componentWillMount() {
+        axios.get(`https://gateway.marvel.com:443/v1/public/characters?limit=10&apikey=960e9b35a6d31a401857a9a792df326f`, {
+            headers: {
+                "Content-Type": "application/json; charset=utf-8"
             }
-        )
+        })    
         .then((res) => {
-            console.log(res.data);
-            
-            const product = {};
-            product.product_name = res.data.id;
-            product.description = res.data.title;
-            product.image = res.data.pictures[0].url;
             this.setState({
-                product : product
-            });
+                characters : res.data.data.results,
+                loading: false
+            });        
         })
         .catch((err) => {
             console.error(err);
@@ -39,10 +30,11 @@ class BasicContainer extends Component {
     }
 
     render() {
-
+        //console.log(this.state.characters);
         return (
+            this.state.loading? 'loading...' : 
             <Basic 
-            product = { this.state.product }
+            characters = { this.state.characters }
             />
         );
     }
