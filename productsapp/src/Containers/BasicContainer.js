@@ -13,7 +13,8 @@ class BasicContainer extends Component {
     }
 
     componentWillMount() {
-        axios.get(`https://gateway.marvel.com:443/v1/public/characters?limit=10&apikey=960e9b35a6d31a401857a9a792df326f`, {
+        axios.get(`https://gateway.marvel.com:443/v1/public/characters?orderBy=modified&limit=50&apikey=960e9b35a6d31a401857a9a792df326f
+`, {
             headers: {
                 "Content-Type": "application/json; charset=utf-8"
             }

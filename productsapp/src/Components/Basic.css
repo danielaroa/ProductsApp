@@ -2,9 +2,8 @@
     display: inline-grid;
     align-content: center;
     grid-template-areas: 
-    'title title title'
-    'picture picture picture'
-    'description description description';
+    'title'
+    'picture';
     grid-auto-flow: row;
     padding: 15px;
     
@@ -21,8 +20,6 @@
 }
 .character-information_img {
     grid-area: picture;
-    grid-column: 1;
-    grid-row: 2 / 3;
 }
 .character-information_img img{
     width: 350px;

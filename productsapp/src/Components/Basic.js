@@ -13,9 +13,6 @@ class Basic extends Component {
                         <div className="character-information_img">
                             <img src={ result.thumbnail['path'] + '.jpg' } />
                         </div>
-                        <div className="character-information_description">
-                            <p>{result.description }</p>
-                        </div>
                     </div>
                 )}
             </div>
